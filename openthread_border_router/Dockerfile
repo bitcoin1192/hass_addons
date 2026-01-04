@@ -18,8 +18,8 @@ ENV REST_API 1
 ENV OTBR_DHCP6_PD_CLIENT=openthread
 ENV DOCKER 1
 
-COPY 0001-channel-monitor-disable-by-default.patch /usr/src
-COPY 0002-spinel-Clear-source-match-tables-before-restoring.patch /usr/src
+#COPY 0001-channel-monitor-disable-by-default.patch /usr/src
+#COPY 0002-spinel-Clear-source-match-tables-before-restoring.patch /usr/src
 COPY openthread-core-ha-config-posix.h /usr/src
 # Required and installed (script/bootstrap) can be removed after build
 ENV OTBR_BUILD_DEPS build-essential ninja-build cmake wget ca-certificates \
@@ -57,8 +57,8 @@ RUN \
     && ./script/bootstrap \
     && ( \
         cd third_party/openthread/repo \
-        && patch -p1 < /usr/src/0001-channel-monitor-disable-by-default.patch \
-        && patch -p1 < /usr/src/0002-spinel-Clear-source-match-tables-before-restoring.patch \
+#        && patch -p1 < /usr/src/0001-channel-monitor-disable-by-default.patch \
+#        && patch -p1 < /usr/src/0002-spinel-Clear-source-match-tables-before-restoring.patch \
         && cp /usr/src/openthread-core-ha-config-posix.h . \
        ) \
     # Mimic rt_tables_install \
